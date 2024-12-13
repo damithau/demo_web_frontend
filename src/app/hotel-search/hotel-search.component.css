@@ -1,0 +1,96 @@
+/* src/app/components/hotel-search/hotel-search.component.css */
+.home-container {
+  background-image: url('../b.jpg');
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+   
+  display: flex;
+  min-height: 100vh; /* Sets the minimum height to the full viewport height */
+  height: auto;
+  flex-direction: column;
+  justify-content: space-between; 
+}
+.container {
+    max-width: 1500px;
+    margin: 20px auto;
+    padding: 30px;
+    margin-top: 100px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: rgba(245, 245, 245, 0.4);
+    
+  }
+  
+  h2 {
+    text-align: center;
+  }
+  
+  form div {
+    margin-bottom: 10px;
+    margin-right: 10px;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+  }
+  
+  button {
+    padding: 8px 16px;
+    margin-top: 10px;
+    background-color: #28a745;
+    border-radius: 4px;
+  }
+  
+  button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:disabled {
+    background-color: #d6d6d6;
+  }
+  
+  .error {
+    color: red;
+    text-align: center;
+  }
+  
+  h3 {
+    margin-top: 20px;
+  }
+  
+  h4 {
+    margin-top: 10px;
+    color: #28a745;
+    
+  }
+  .search-results {
+    max-width: 800px;
+    margin: 20px auto;
+    
+  }
+  
+  mat-expansion-panel {
+    margin-bottom: 10px;
+    background: #f9f9f9;
+    background-color: rgba(245, 245, 245, 0.4);
+  }
+  
+  .room-details {
+    margin-left: 0px;
+    background-color: rgba(245, 245, 245, 0.0);
+  }
+  
+  mat-divider {
+    margin: 10px 0;
+  }
+    
