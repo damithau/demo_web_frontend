@@ -80,14 +80,6 @@ describe('HotelContractComponent', () => {
     ).toBeTrue();
   });
 
-  // it('should call getContractById on searchContract', () => {
-  //   const serviceSpy = spyOn(service, 'getContractById').and.callThrough();
-  //   component.contractId = 1;
-  //   component.searchContract();
-  //   expect(serviceSpy).toHaveBeenCalledWith(1);
-  //   expect(component.contractDetails?.hotelName).toBe('Test Hotel');
-  // });
-
   it('should handle errors when fetching contract by id', () => {
     spyOn(service, 'getContractById').and.returnValue(
       throwError(() => new Error('Not Found'))

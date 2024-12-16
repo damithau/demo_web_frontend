@@ -1,4 +1,3 @@
-<!-- src/app/components/hotel-search/hotel-search.component.html -->
 <div class="home-container">
   <div class="container">
     <h2>Hotel Search</h2>
@@ -17,8 +16,6 @@
         </div>
       </div>
 
-      
-
       <div>
         <label for="noOfNights">Number of Nights</label>
         <input
@@ -28,7 +25,7 @@
           name="noOfNights"
           required
         />
-        <div *ngIf="noOfNightsError" class="error-message" style="color: red;">
+        <div *ngIf="noOfNightsError" class="error-message" style="color: red">
           {{ noOfNightsError }}
         </div>
       </div>
@@ -74,7 +71,9 @@
         <mat-expansion-panel *ngFor="let hotel of searchResults">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              {{ hotel.hotelName }}
+              <h3>
+                {{ hotel.hotelName }}
+              </h3>
             </mat-panel-title>
           </mat-expansion-panel-header>
 
@@ -84,7 +83,15 @@
               <strong>Marked-Up Price:</strong>
               {{ room.markedUpPrice | currency }}
             </p>
+
             <mat-divider></mat-divider>
+          </div>
+
+          <div class="price" *ngIf="hotel.totalPrice">
+            <h3>
+              <strong>Total Price:</strong>
+              {{ hotel.totalPrice | currency }}
+            </h3>
           </div>
         </mat-expansion-panel>
       </mat-accordion>

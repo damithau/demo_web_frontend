@@ -1,311 +1,223 @@
-/* .container {
-    padding: 20px;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  
-  .error-message {
-    color: red;
-    font-weight: bold;
-  }
-  
-  .contract-details {
-    margin-top: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-  }
-  
-  .room-type {
-    margin-bottom: 15px;
-  }
-  
-  .error-message {
-    color: red;
-  }
-  
-  .success-message {
-    color: green;
-  }
-  
-  .container {
-    padding: 20px;
-  }
-  
-  button {
-    margin-top: 10px;
-  }
-   */
-   .home-container {
-    background-image: url('../b.jpg');
-    background-size: cover; 
-    background-position: center; 
-    background-repeat: no-repeat; 
-    
-    display: flex;
-    min-height: 100vh; /* Sets the minimum height to the full viewport height */
-    height: auto;
-    flex-direction: column;
-    justify-content: space-between; 
-  }
-   .container {
-    
-    padding: 20px;
-    width: 800px;
-    margin: 0 auto;
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .title {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  .search-section {
-    margin-top: 20px;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .form-label {
-    font-weight: bold;
-    margin-right: 10px;
-  }
-  
-  .form-input {
-    flex: 1;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .btn {
-    padding: 8px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .btn-primary {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  .btn-secondary {
-    background-color: #28a745;
-    color: white;
-  }
-  
-  .error-message {
-    color: red;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .success-message {
-    color: green;
-    font-weight: bold;
-    margin-top: 10px;
-    text-align: center;
-  }
-  
-  .contract-card {
-    background-color: white;
-    border-radius: 10px;
-    
-    padding: 20px;
-    margin-top: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .info p {
-    margin: 5px 0;
-  }
-  
-  .update-form {
-    margin-top: 20px;
-  }
-  
-  .section-title {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #555;
-  }
-  
-  /* .room-card {
-    background-color: #f1f1f1;
-    padding: 15px;
-    border-radius: 8px;
-    margin-top: 10px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    max-width: 250px;
-  } */
-  /* .container {
-    padding: 20px;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  
-  .error-message {
-    color: red;
-    font-weight: bold;
-  }
-  
-  .contract-details {
-    margin-top: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-  }
-  
-  .room-type {
-    margin-bottom: 15px;
-  }
-  
-  .error-message {
-    color: red;
-  }
-  
-  .success-message {
-    color: green;
-  }
-  
-  .container {
-    padding: 20px;
-  }
-  
-  button {
-    margin-top: 10px;
-  }
-   */
-   .home-container {
-    background-image: url('../b.jpg');
-    background-size: cover; 
-    background-position: center; 
-    background-repeat: no-repeat; 
-    
-    display: flex;
-    min-height: 100vh; /* Sets the minimum height to the full viewport height */
-    height: auto;
-    flex-direction: column;
-    justify-content: space-between; 
-    
-    
-    
-  }
-   .container {
-    
-    padding: 20px;
-    width: 800px;
-    margin: 0 auto;
-    font-family: Arial, sans-serif;
-    background-color: rgba(245, 245, 245, 0.4);
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .title {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  .search-section {
-    margin-top: 20px;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    margin-bottom: 20px;
-    background-color: rgba(245, 245, 245, 0.5);
-  }
-  
-  .form-label {
-    font-weight: bold;
-    margin-right: 10px;
-  }
-  
-  .form-input {
-    flex: 1;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .btn {
-    padding: 8px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 100px;
-  }
-  
-  .btn-primary {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  .btn-secondary {
-    background-color: #28a745;
-    color: white;
-  }
-  
-  .error-message {
-    color: red;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .success-message {
-    color: green;
-    font-weight: bold;
-    margin-top: 10px;
-    text-align: center;
-  }
-  
-  .contract-card {
-    background-color: rgba(245, 245, 245, 0.7);
-    border-radius: 10px;
-    
-    padding: 20px;
-    margin-top: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .info p {
-    margin: 5px 0;
-  }
-  
-  .update-form {
-    margin-top: 20px;
-  }
-  
-  .section-title {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #555;
-  }
-  
-  
 
-  .room-card-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Creates two equal-width columns */
-    gap: 20px;                            /* Adds space between the cards */
-  }
-  
-  .room-card {
-    background-color: #f1f1f1;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    margin-top: 10px;
-  }
-  
+.home-container {
+  background-image: url("../b.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  min-height: 100vh; 
+  height: auto;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.container {
+  padding: 20px;
+  width: 800px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.search-section {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.form-label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.form-input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.btn {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #28a745;
+  color: white;
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.success-message {
+  color: green;
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.contract-card {
+  background-color: white;
+  border-radius: 10px;
+
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.info p {
+  margin: 5px 0;
+}
+
+.update-form {
+  margin-top: 20px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+
+.home-container {
+  background-image: url("../b.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  min-height: 100vh; 
+  height: auto;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.container {
+  padding: 20px;
+  width: 800px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  background-color: rgba(245, 245, 245, 0.6);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.search-section {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: rgba(245, 245, 245, 0.5);
+}
+
+.form-label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.form-input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.btn {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 100px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #28a745;
+  color: white;
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.success-message {
+  color: green;
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.contract-card {
+  background-color: rgba(245, 245, 245, 0.7);
+  border-radius: 10px;
+
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.info p {
+  margin: 5px 0;
+}
+
+.update-form {
+  margin-top: 20px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.room-card-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 20px; 
+}
+
+.room-card {
+  background-color: #f1f1f1;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+}

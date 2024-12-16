@@ -13,6 +13,10 @@ import {
 import { HotelContractDto } from '../models/hotel-contract-dto.model';
 import { FormsModule } from '@angular/forms';
 
+/**
+ * Component to manage and view hotel contracts.
+ * It allows searching for contracts by ID, viewing details, and updating markup percentage.
+ */
 @Component({
   selector: 'app-hotel-contract',
   standalone: true,
@@ -27,6 +31,12 @@ export class viewContractsComponent {
   errorMessage: string = '';
   successMessage: string = '';
 
+  /**
+   * Constructor to inject dependencies and initialize the form group.
+   *
+   * @param fb FormBuilder service for creating reactive forms
+   * @param contractService Service to interact with hotel contract APIs
+   */
   constructor(
     private fb: FormBuilder,
     private contractService: HotelContractService
@@ -40,7 +50,10 @@ export class viewContractsComponent {
     });
   }
 
-  // Fetch contract by ID
+  /**
+   * Fetches contract details by ID.
+   * Populates the form with the fetched data if successful.
+   */
   searchContract() {
     if (this.contractId !== null) {
       this.contractService.getContractById(this.contractId).subscribe({
@@ -58,23 +71,10 @@ export class viewContractsComponent {
     }
   }
 
-  // Update markup percentage
-  // updateMarkupPercentage() {
-  //   if (this.contractId !== null && this.contractForm.valid) {
-  //     const updatedMarkupPercentage = this.contractForm.get('markupPercentage')?.value;
-
-  //     this.contractService.updateMarkupPercentage(this.contractId, updatedMarkupPercentage).subscribe({
-  //       next: (response) => {
-  //         this.successMessage = 'Markup percentage updated successfully!';
-
-  //       },
-  //       error: (error) => {
-  //         this.errorMessage = 'Error updating markup percentage: ' + error.message;
-  //         this.successMessage = ''; // Clear success message
-  //       }
-  //     });
-  //   }
-  // }
+  /**
+   * Updates the markup percentage for the selected contract.
+   * Displays success or error messages based on the API response.
+   */
   updateMarkupPercentage() {
     if (this.contractId !== null && this.contractForm.valid) {
       const updatedMarkupPercentage =
