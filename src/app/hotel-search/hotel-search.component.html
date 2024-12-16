@@ -1,68 +1,96 @@
 <!-- src/app/components/hotel-search/hotel-search.component.html -->
 <div class="home-container">
-<div class="container">
+  <div class="container">
     <h2>Hotel Search</h2>
     <form (ngSubmit)="searchHotels()">
       <div>
         <label for="checkInDate">Check-in Date</label>
-        <input type="date" id="checkInDate" [(ngModel)]="checkInDate" name="checkInDate" required />
+        <input
+          type="date"
+          id="checkInDate"
+          [(ngModel)]="checkInDate"
+          name="checkInDate"
+          required
+        />
+        <div *ngIf="CheckInDateError" class="error-message" style="color: red">
+          {{ CheckInDateError }}
+        </div>
       </div>
-  
+
+      
+
       <div>
         <label for="noOfNights">Number of Nights</label>
-        <input type="number" id="noOfNights" [(ngModel)]="noOfNights" name="noOfNights" required />
+        <input
+          type="number"
+          id="noOfNights"
+          [(ngModel)]="noOfNights"
+          name="noOfNights"
+          required
+        />
+        <div *ngIf="noOfNightsError" class="error-message" style="color: red;">
+          {{ noOfNightsError }}
+        </div>
       </div>
-  
+
       <div formArrayName="roomRequests">
         <h3>Room Requests</h3>
         <div *ngFor="let roomRequest of roomRequests; let i = index">
           <div>
             <label>Number of Rooms</label>
-            <input type="number" [(ngModel)]="roomRequest.noOfRooms" name="noOfRooms{{i}}" required />
+            <input
+              type="number"
+              [(ngModel)]="roomRequest.noOfRooms"
+              name="noOfRooms{{ i }}"
+              required
+            />
             <label>Number of Adults</label>
-            <input type="number" [(ngModel)]="roomRequest.noOfAdults" name="noOfAdults{{i}}" required />
+            <input
+              type="number"
+              [(ngModel)]="roomRequest.noOfAdults"
+              name="noOfAdults{{ i }}"
+              required
+            />
             <button type="button" (click)="removeRoomRequest(i)">Remove</button>
           </div>
         </div>
-        <button type="button" (click)="addRoomRequest()">Add Room Request</button>
+        <button type="button" (click)="addRoomRequest()">
+          Add Room Request
+        </button>
       </div>
-  
-      <button type="submit" [disabled]="!checkInDate || !noOfNights || roomRequests.length === 0">
+
+      <button
+        type="submit"
+        [disabled]="!checkInDate || !noOfNights || roomRequests.length === 0"
+      >
         Search Hotels
       </button>
     </form>
-  
+
     <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
-  
-    <!-- <div *ngIf="searchResults.length > 0">
-      <h3>Search Results</h3>
-      <div *ngFor="let hotel of searchResults">
-        <h4>{{ hotel.hotelName }}</h4>
-        <div *ngFor="let room of hotel.roomTypes">
-          <p>{{ room.roomType }} - Price: ${{ room.markedUpPrice }}</p>
-        </div>
-      </div>
-    </div> -->
+
     <div class="search-results" *ngIf="searchResults.length > 0">
-        <mat-accordion>
-          <mat-expansion-panel *ngFor="let hotel of searchResults">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                {{ hotel.hotelName }}
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-      
-            <div *ngFor="let room of hotel.roomTypes" class="room-details">
-              <p><strong>Room Type:</strong> {{ room.roomType }}</p>
-              <p><strong>Marked-Up Price:</strong> {{ room.markedUpPrice | currency }}</p>
-              <mat-divider></mat-divider>
-            </div>
-          </mat-expansion-panel>
-        </mat-accordion>
-      </div>
-      <div *ngIf="searchResults.length === 0 && isSearched">
-        <p>No results found.</p>
-      </div>
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let hotel of searchResults">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ hotel.hotelName }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <div *ngFor="let room of hotel.roomTypes" class="room-details">
+            <p><strong>Room Type:</strong> {{ room.roomType }}</p>
+            <p>
+              <strong>Marked-Up Price:</strong>
+              {{ room.markedUpPrice | currency }}
+            </p>
+            <mat-divider></mat-divider>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <div *ngIf="searchResults.length === 0 && isSearched">
+      <p>No results found.</p>
+    </div>
   </div>
 </div>
-  
