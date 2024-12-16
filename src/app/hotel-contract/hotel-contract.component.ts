@@ -1,16 +1,27 @@
 import { Component, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, FormGroup, FormArray, Validators,AbstractControl, NgModel } from '@angular/forms';
-import { HotelContractService, HotelContract } from '../services/hotel-contract.service';
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  FormGroup,
+  FormArray,
+  Validators,
+  AbstractControl,
+  NgModel,
+  ValidationErrors,
+} from '@angular/forms';
+import {
+  HotelContractService,
+  HotelContract,
+} from '../services/hotel-contract.service';
 import { HotelContractDto } from '../models/hotel-contract-dto.model';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-hotel-contract',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule,FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './hotel-contract.component.html',
   styleUrls: ['./hotel-contract.component.css'],
-  
 })
 export class HotelContractComponent {
   contractForm: FormGroup;
@@ -18,14 +29,20 @@ export class HotelContractComponent {
   contractDetails: HotelContractDto | null = null;
   errorMessage: string = '';
 
-  constructor(private fb: FormBuilder, private contractService: HotelContractService) {
-    this.contractForm = this.fb.group({
-      hotelName: ['', Validators.required],
-      contractValidFrom: ['', Validators.required],
-      contractValidTo: ['', Validators.required],
-      markupPercentage: [0, [Validators.required, Validators.min(0)]],
-      roomTypes: this.fb.array([],this.minimumOneRoomValidator),
-    });
+  constructor(
+    private fb: FormBuilder,
+    private contractService: HotelContractService
+  ) {
+    this.contractForm = this.fb.group(
+      {
+        hotelName: ['', Validators.required],
+        contractValidFrom: ['', Validators.required],
+        contractValidTo: ['', Validators.required],
+        markupPercentage: [0, [Validators.required, Validators.min(1)]],
+        roomTypes: this.fb.array([], this.minimumOneRoomValidator),
+      },
+      { validators: this.dateRangeValidator }
+    );
   }
 
   searchContract() {
@@ -38,7 +55,7 @@ export class HotelContractComponent {
         error: (error) => {
           this.errorMessage = 'Contract not found or error fetching data.';
           this.contractDetails = null;
-        }
+        },
       });
     }
   }
@@ -62,19 +79,6 @@ export class HotelContractComponent {
     this.roomTypes.removeAt(index);
   }
 
-  // submit(): void {
-  //   if (this.contractForm.valid) {
-  //     const contract: HotelContract = this.contractForm.value;
-  //     this.contractService.submitContract(contract).subscribe({
-  //       next: () => alert('Contract submitted successfully!'),
-  //       error: (error) => alert('Failed to submit contract: ' + error.message),
-  //     }
-      
-  //   );
-  //   } else {
-  //     alert('Please fill all required fields.');
-  //   }
-  // }
   submit(): void {
     if (this.contractForm.valid) {
       const contractData = this.contractForm.value;
@@ -91,17 +95,55 @@ export class HotelContractComponent {
           console.error('Error submitting contract:', error);
         }
       );
-    }
-    else{
+    } else {
       // Mark roomTypes as touched to trigger the inline error message
       this.contractForm.get('roomTypes')?.markAsTouched();
 
       return;
     }
   }
-  minimumOneRoomValidator(control: AbstractControl): { [key: string]: any } | null {
+  minimumOneRoomValidator(
+    control: AbstractControl
+  ): { [key: string]: any } | null {
     const formArray = control as FormArray;
     return formArray.length > 0 ? null : { noRoomTypes: true };
   }
 
+  dateRangeValidator(control: AbstractControl): ValidationErrors | null {
+    const from = control.get('contractValidFrom')?.value;
+    const to = control.get('contractValidTo')?.value;
+
+    if (from && to && new Date(from) >= new Date(to)) {
+      control.get('contractValidFrom')?.setErrors({ invalidDateRange: true });
+      control.get('contractValidTo')?.setErrors({ invalidDateRange: true });
+      return { dateRangeInvalid: true };
+    } else {
+      control.get('contractValidFrom')?.setErrors(null);
+      control.get('contractValidTo')?.setErrors(null);
+    }
+    return null;
+  }
+  getErrorMessage(control: AbstractControl | null, fieldName: string): string {
+    if (!control || !control.errors || !control.touched) {
+      return '';
+    }
+
+    if (control.errors['required']) {
+      return `${fieldName} is required.`;
+    }
+
+    if (control.errors['min']) {
+      return `${fieldName} must be at least ${control.errors['min'].min}.`;
+    }
+
+    if (control.errors['invalidDateRange']) {
+      return `Contract Valid From must be earlier than Contract Valid To.`;
+    }
+
+    if (control.errors['noRoomTypes']) {
+      return 'At least one room type is required.';
+    }
+
+    return '';
+  }
 }
