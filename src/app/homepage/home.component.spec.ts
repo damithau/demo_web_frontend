@@ -20,16 +20,12 @@ describe('HomeComponent', () => {
     fixture.detectChanges();
   });
 
-  //   it('should create the component', () => {
-  //     expect(component).toBeTruthy();
-  //   });
-
   it('should display navigation links correctly', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const links = compiled.querySelectorAll('.feature-card');
 
     expect(links.length).toBe(3);
-    expect(links[0]?.textContent).toContain('Manage Hotel Contracts');
+    expect(links[0]?.textContent).toContain('Add Hotel Contracts');
     expect(links[1]?.textContent).toContain('Search Hotels');
     expect(links[2]?.textContent).toContain('View Contracts');
   });

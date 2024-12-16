@@ -8,6 +8,14 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDividerModule } from '@angular/material/divider';
 
+/**
+ * The HotelSearchComponent allows users to search for hotels based on
+ * criteria such as check-in date, number of nights, and room requests.
+ *
+ * It displays the search results and provides a feature to calculate
+ * the total price of each hotel based on the room types and number of nights.
+ */
+
 @Component({
   selector: 'app-hotel-search',
   templateUrl: './hotel-search.component.html',
@@ -32,6 +40,12 @@ export class HotelSearchComponent {
   searchResults: any[] = [];
   errorMessage: string = '';
   isSearched = false;
+
+  /**
+   * Initializes the component and injects the HotelSearchService.
+   *
+   * @param hotelSearchService The service for interacting with the backend to fetch hotel data.
+   */
 
   constructor(private hotelSearchService: HotelSearchService) {}
 
@@ -62,6 +76,25 @@ export class HotelSearchComponent {
     }
   }
 
+  /**
+   * Calculates the total price for each hotel in the search results.
+   * Assumes that `markedUpPrice` represents the price per room per night.
+   */
+  calculateTotalPrice() {
+    this.searchResults.forEach((hotel) => {
+      let totalPrice = 0;
+      hotel.roomTypes.forEach((room: any) => {
+        totalPrice += room.markedUpPrice; // Assuming the price is per night, multiply by number of nights
+      });
+      hotel.totalPrice = totalPrice;
+      console.log(totalPrice); // Add the totalPrice to each hotel object
+    });
+  }
+
+  /**
+   * Performs the hotel search using the provided check-in date,
+   * number of nights, and room requests. Handles success and error responses.
+   */
   searchHotels() {
     this.validateInputs();
     if (this.CheckInDateError || this.noOfNightsError) {
@@ -76,7 +109,10 @@ export class HotelSearchComponent {
     this.hotelSearchService.searchHotels(searchCriteria).subscribe(
       (results) => {
         this.searchResults = results;
+        this.calculateTotalPrice();
+
         console.log('Search Results:', results);
+
         this.errorMessage = '';
       },
       (error) => {

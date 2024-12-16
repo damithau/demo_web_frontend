@@ -21,7 +21,7 @@ import { FooterComponent } from './footer/footer.component';
   standalone: true,
   imports: [RouterOutlet, NavbarComponent],
   template: `
-    <app-navbar></app-navbar>
+    
     <router-outlet></router-outlet>
     <!-- <app-footer></app-footer> -->
   `,

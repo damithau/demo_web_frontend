@@ -111,9 +111,6 @@ describe('HotelSearchComponent', () => {
 
     // Expect the "No results found" message to be displayed
     const noResultsMessage = fixture.debugElement.query(By.css('div p'));
-    // expect(noResultsMessage).not.toBeNull();
-    // expect(noResultsMessage.nativeElement.textContent).toContain(
-    //   'No results found.'
-    // );
+    
   });
 });

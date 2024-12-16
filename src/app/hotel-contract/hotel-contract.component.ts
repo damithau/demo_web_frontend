@@ -16,6 +16,13 @@ import {
 } from '../services/hotel-contract.service';
 import { HotelContractDto } from '../models/hotel-contract-dto.model';
 import { FormsModule } from '@angular/forms';
+
+/**
+ * The HotelContractComponent provides functionality to create, validate,
+ * and submit hotel contracts, as well as fetch existing contracts by ID.
+ * It is a standalone component, using Angular's reactive forms
+ * for robust form handling and validation.
+ */
 @Component({
   selector: 'app-hotel-contract',
   standalone: true,
@@ -44,6 +51,11 @@ export class HotelContractComponent {
       { validators: this.dateRangeValidator }
     );
   }
+
+   /**
+   * Searches for a hotel contract by its ID and fetches its details.
+   * Displays an error message if the contract is not found.
+   */
 
   searchContract() {
     if (this.contractId !== null) {
@@ -79,6 +91,11 @@ export class HotelContractComponent {
     this.roomTypes.removeAt(index);
   }
 
+  /**
+   * Submits the hotel contract form if valid.
+   * Sends the form data to the backend and handles success or error responses.
+   */
+
   submit(): void {
     if (this.contractForm.valid) {
       const contractData = this.contractForm.value;
@@ -102,12 +119,26 @@ export class HotelContractComponent {
       return;
     }
   }
+
+  /**
+   * Validator to ensure at least one room type is added.
+   * 
+   * @param control The AbstractControl representing the 'roomTypes' FormArray.
+   * @returns {ValidationErrors | null} An error object if validation fails, otherwise null.
+   */
   minimumOneRoomValidator(
     control: AbstractControl
   ): { [key: string]: any } | null {
     const formArray = control as FormArray;
     return formArray.length > 0 ? null : { noRoomTypes: true };
   }
+
+  /**
+   * Custom validator to ensure 'contractValidFrom' is earlier than 'contractValidTo'.
+   * 
+   * @param control The AbstractControl representing the form group.
+   * @returns {ValidationErrors | null} An error object if validation fails, otherwise null.
+   */
 
   dateRangeValidator(control: AbstractControl): ValidationErrors | null {
     const from = control.get('contractValidFrom')?.value;
@@ -123,6 +154,15 @@ export class HotelContractComponent {
     }
     return null;
   }
+
+  /**
+   * Retrieves a human-readable error message for a specific form control.
+   * 
+   * @param control The form control to check for errors.
+   * @param fieldName The name of the field for contextual error messages.
+   * @returns {string} The error message if validation fails, otherwise an empty string.
+   */
+  
   getErrorMessage(control: AbstractControl | null, fieldName: string): string {
     if (!control || !control.errors || !control.touched) {
       return '';
