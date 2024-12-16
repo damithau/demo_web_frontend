@@ -1,74 +1,62 @@
-<!-- <div class="container">
+<div class="home-container">
+  <div class="container">
     <h2>Submit Hotel Contract</h2>
     <form [formGroup]="contractForm" (ngSubmit)="submit()">
       <div>
         <label for="hotelName">Hotel Name</label>
         <input id="hotelName" formControlName="hotelName" required />
-      </div>
-  
-      <div>
-        <label for="contractValidFrom">Valid From</label>
-        <input type="date" id="contractValidFrom" formControlName="contractValidFrom" required />
-      </div>
-  
-      <div>
-        <label for="contractValidTo">Valid To</label>
-        <input type="date" id="contractValidTo" formControlName="contractValidTo" required />
-      </div>
-  
-      <div>
-        <label for="markupPercentage">Markup Percentage</label>
-        <input
-          type="number"
-          id="markupPercentage"
-          formControlName="markupPercentage"
-          required
-        />
-      </div>
-  
-      <h3>Room Types</h3>
-      <div formArrayName="roomTypes" *ngFor="let room of roomTypes.controls; let i = index">
-        <div [formGroupName]="i">
-          <label>Room Type</label>
-          <input formControlName="roomType" required />
-  
-          <label>Price Per Person</label>
-          <input type="number" formControlName="pricePerPerson" required />
-  
-          <label>Amount of Rooms</label>
-          <input type="number" formControlName="amountOfRooms" required />
-  
-          <label>Max Adults</label>
-          <input type="number" formControlName="maxAdults" required />
-  
-          <button type="button" (click)="removeRoomType(i)">Remove</button>
+
+        <div
+          class="validation-error"
+          *ngIf="contractForm.get('hotelName')?.errors?.['required'] &&
+          contractForm.get('hotelName')?.touched"
+        >
+          <p style="color: red">This field is required</p>
         </div>
       </div>
-  
-      <button type="button" (click)="addRoomType()">Add Room Type</button>
-      <button type="submit">Submit</button>
-    </form>
-  </div>
-   -->
-   <div class="home-container">
-   <div class="container">
-    <h2>Submit Hotel Contract</h2>
-    <form [formGroup]="contractForm" (ngSubmit)="submit()">
-      <div>
-        <label for="hotelName">Hotel Name</label>
-        <input id="hotelName" formControlName="hotelName" required />
-      </div>
-  
+
       <div>
         <label for="contractValidFrom">Valid From</label>
-        <input type="date" id="contractValidFrom" formControlName="contractValidFrom" required />
+        <input
+          type="date"
+          id="contractValidFrom"
+          formControlName="contractValidFrom"
+          required
+        />
+        <div
+          class="validation-error"
+          *ngIf="
+            contractForm.get('contractValidFrom')?.errors?.['invalidDateRange'] &&
+            contractForm.get('contractValidFrom')?.touched
+          "
+        >
+          <p style="color: red">
+            'Valid From' must be earlier than 'Valid To'.
+          </p>
+        </div>
       </div>
-  
+
       <div>
         <label for="contractValidTo">Valid To</label>
-        <input type="date" id="contractValidTo" formControlName="contractValidTo" required />
+        <input
+          type="date"
+          id="contractValidTo"
+          formControlName="contractValidTo"
+          required
+        />
+        <div
+          class="validation-error"
+          *ngIf="
+            contractForm.get('contractValidTo')?.errors?.['invalidDateRange'] &&
+            contractForm.get('contractValidTo')?.touched
+          "
+        >
+          <p style="color: red">
+            'Valid From' must be earlier than 'Valid To'.
+          </p>
+        </div>
       </div>
-  
+
       <div>
         <label for="markupPercentage">Markup Percentage</label>
         <input
@@ -77,8 +65,19 @@
           formControlName="markupPercentage"
           required
         />
+        <div
+          class="validation-error"
+          *ngIf="contractForm.get('markupPercentage')?.errors?.['min'] && contractForm.get('markupPercentage')?.touched"
+        >
+          <p style="color: red">Enter a value greater than 0</p>
+        </div>
+        <div
+          *ngIf="contractForm.get('markupPercentage')?.errors?.['required'] && contractForm.get('markupPercentage')?.touched"
+        >
+          <p style="color: red">This field is required</p>
+        </div>
       </div>
-  
+
       <h3>Room Types</h3>
       <div
         class="room-container"
@@ -88,33 +87,82 @@
         <div [formGroupName]="i">
           <label>Room Type</label>
           <input formControlName="roomType" required />
-  
+          <div
+            class="validation-error"
+            *ngIf="room.get('roomType')?.errors?.['required'] && room.get('roomType')?.touched"
+          >
+            <p style="color: red">This field is required</p>
+          </div>
+
           <label>Price Per Person</label>
           <input type="number" formControlName="pricePerPerson" required />
-  
+          <div
+            class="validation-error"
+            *ngIf="room.get('pricePerPerson')?.errors?.['required'] && room.get('pricePerPerson')?.touched"
+          >
+            <p style="color: red">This field is required</p>
+          </div>
+
+          <div
+            class="validation-error"
+            *ngIf="room.get('pricePerPerson')?.errors?.['min'] && room.get('pricePerPerson')?.touched"
+          >
+            <p style="color: red">Enter a value greater than 0</p>
+          </div>
+
           <label>Amount of Rooms</label>
           <input type="number" formControlName="amountOfRooms" required />
-  
+          <div
+            class="validation-error"
+            *ngIf="room.get('amountOfRooms')?.errors?.['required'] && room.get('amountOfRooms')?.touched"
+          >
+            <p style="color: red">This field is required</p>
+          </div>
+
+          <div
+            class="validation-error"
+            *ngIf="room.get('amountOfRooms')?.errors?.['min'] && room.get('amountOfRooms')?.touched"
+          >
+            <p style="color: red">Enter a value greater than 0</p>
+          </div>
+
           <label>Max Adults</label>
           <input type="number" formControlName="maxAdults" required />
-  
+          <div
+            class="validation-error"
+            *ngIf="room.get('maxAdults')?.errors?.['required'] && room.get('maxAdults')?.touched"
+          >
+            <p style="color: red">This field is required</p>
+          </div>
+          <div
+            class="validation-error"
+            *ngIf="room.get('maxAdults')?.errors?.['min'] && room.get('maxAdults')?.touched"
+          >
+            <p style="color: red">Enter a value greater than 0</p>
+          </div>
+
           <button type="button" (click)="removeRoomType(i)">Remove</button>
         </div>
       </div>
-      <div *ngIf="contractForm.get('roomTypes')?.hasError('noRoomTypes') && contractForm.get('roomTypes')?.touched">
-        <p style="color: red;">Please add at least one room type before submitting the form.</p>
+      <div
+        class="validation-error"
+        *ngIf="
+          contractForm.get('roomTypes')?.hasError('noRoomTypes') &&
+          contractForm.get('roomTypes')?.touched
+        "
+      >
+        <p style="color: red">
+          Please add at least one room type before submitting the form.
+        </p>
       </div>
-      
-  
+
       <!-- <button type="button" (click)="addRoomType()">Add Room Type</button>
       <button type="submit">Submit</button> -->
 
       <div class="button-container">
         <button type="button" (click)="addRoomType()">Add Room Type</button>
         <button type="submit">Submit</button>
-        
       </div>
     </form>
   </div>
-   </div>
-  
+</div>
