@@ -103,7 +103,7 @@
 }
 
 
-.home-container {
+/* .home-container {
   background-image: url("../b.jpg");
   background-size: cover;
   background-position: center;
@@ -206,7 +206,7 @@
   font-weight: bold;
   margin-bottom: 10px;
   color: #555;
-}
+} */
 
 .room-card-container {
   display: grid;
