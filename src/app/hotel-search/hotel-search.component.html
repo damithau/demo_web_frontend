@@ -1,4 +1,5 @@
 <div class="home-container">
+  
   <div class="container">
     <h2>Hotel Search</h2>
     <form (ngSubmit)="searchHotels()">
@@ -11,7 +12,7 @@
           name="checkInDate"
           required
         />
-        <div *ngIf="CheckInDateError" class="error-message" style="color: red">
+        <div  *ngIf="CheckInDateError" class="error-message" style="color: red">
           {{ CheckInDateError }}
         </div>
       </div>
@@ -25,7 +26,7 @@
           name="noOfNights"
           required
         />
-        <div *ngIf="noOfNightsError" class="error-message" style="color: red">
+        <div  *ngIf="noOfNightsError" class="error-message" style="color: red">
           {{ noOfNightsError }}
         </div>
       </div>
@@ -37,17 +38,27 @@
             <label>Number of Rooms</label>
             <input
               type="number"
+              
               [(ngModel)]="roomRequest.noOfRooms"
               name="noOfRooms{{ i }}"
               required
+              min="1"
+              
             />
+            <div class="error-message" *ngIf="roomRequest.noOfRooms < 1" style="color: red;">
+              Number of rooms cannot be less than 1.
+            </div>
             <label>Number of Adults</label>
             <input
               type="number"
               [(ngModel)]="roomRequest.noOfAdults"
               name="noOfAdults{{ i }}"
               required
+              
             />
+            <div class="error-message" *ngIf="roomRequest.noOfAdults < 1" style="color: red;">
+              Number of Adults cannot be less than 1.
+            </div>
             <button type="button" (click)="removeRoomRequest(i)">Remove</button>
           </div>
         </div>
@@ -64,7 +75,7 @@
       </button>
     </form>
 
-    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+    <div  *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
 
     <div class="search-results" *ngIf="searchResults.length > 0">
       <mat-accordion>

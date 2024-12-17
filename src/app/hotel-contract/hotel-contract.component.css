@@ -11,8 +11,9 @@
   justify-content: space-between;
 }
 .container {
+  padding: 12rem;
   max-width: 700px;
-  margin: 20px auto;
+  margin: 90px auto;
   background: #c4c2c2;
   padding: 20px;
   border-radius: 8px;
@@ -30,6 +31,51 @@ h3 {
   text-align: center;
   color: #000000;
 }
+/* .contractValidFromTo{
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  gap: 5rem; 
+  width: 100%;
+}
+.contractValidFromTo input {
+  flex: 1; 
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  font-size: 1rem;
+  width: 50vw;
+} */
+
+.contractValidFromTo {
+  display: flex; 
+  justify-content: flex-start; 
+  align-items: center;
+  gap: 2rem; 
+  
+  
+  
+  width: 100%; /* Full width of parent container */
+  box-sizing: border-box; /* Include padding in the width */
+  
+}
+
+.contractValidFromTo input {
+  
+  flex: 1; 
+  padding: 0.75rem;
+  font-size: 1rem; 
+  width: 334px;
+  
+}
+
+.contractValidFromTo input:focus {
+  border-color: #004d40; 
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 77, 64, 0.3); 
+  
+}
 
 label {
   font-weight: bold;
@@ -41,8 +87,8 @@ label {
 input {
   width: 100%;
   padding: 10px;
-  border: 1px solid #000000;
-  border-width: 2px;
+  border: 0.7px solid #000000;
+  
   border-radius: 4px;
   margin-bottom: 15px;
   font-size: 14px;
@@ -76,6 +122,9 @@ button[type="button"] {
 
 button[type="button"]:hover {
   background-color: #5a6268;
+}
+button[type="submit"]:hover {
+  background-color: #1c310c;
 }
 
 button[type="submit"] {

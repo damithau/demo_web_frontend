@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDividerModule } from '@angular/material/divider';
 
+
 /**
  * The HotelSearchComponent allows users to search for hotels based on
  * criteria such as check-in date, number of nights, and room requests.
@@ -21,6 +22,7 @@ import { MatDividerModule } from '@angular/material/divider';
   templateUrl: './hotel-search.component.html',
   styleUrls: ['./hotel-search.component.css'],
   imports: [
+    
     FormsModule,
     NgFor,
     NgIf,
