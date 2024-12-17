@@ -1,3 +1,6 @@
+
+
+
 .home-container {
   background-image: url("../b.jpg");
   background-size: cover;
@@ -5,20 +8,31 @@
   background-repeat: no-repeat;
 
   display: flex;
-  min-height: 100vh; /* Sets the minimum height to the full viewport height */
+  min-height: 100vh;
   height: auto;
   flex-direction: column;
   justify-content: space-between;
 }
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-20px); 
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0); 
+  }
+}
 
 .container {
-  max-width: 1500px;
-  margin: 20px auto;
+  max-width: 700px;
+  margin: 10px auto;
   padding: 30px;
   margin-top: 100px;
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: rgba(245, 245, 245, 0.8);
+  animation: fadeInSlide 0.4s ease-in-out;
 }
 .price{
   color: #ff0055;
@@ -26,6 +40,10 @@
 
 h2 {
   text-align: center;
+}
+.numOfRooms{
+  padding-right: 10px;
+  
 }
 
 form div {
@@ -43,23 +61,94 @@ input {
   margin-top: 5px;
 }
 
+
+.numOfRooms{
+  
+  display: flex;
+
+}
+
+/* Buttons Styling */
 button {
-  padding: 8px 16px;
-  margin-top: 10px;
-  background-color: #28a745;
-  border-radius: 4px;
+  /* display: block; */
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  color: white;
+  transition: all 0.3s ease-in-out;
 }
 
 button[type="submit"] {
   background-color: #007bff;
-  color: white;
-  border: none;
-  cursor: pointer;
+}
+
+
+
+
+
+.search-results h4 {
+  font-size: 1.5rem; /* Increase font size */
+  font-weight: bold; /* Make the text bold */
+  color: #000000; /* Use a primary blue color to stand out */
+  margin-bottom: 10px; /* Add spacing below the name */
+  transition: color 0.3s ease, transform 0.2s ease; /* Add smooth transition for hover effects */
+}
+
+/* Hover effect for emphasis */
+.search-results h4:hover {
+  color: #0056b3; /* Slightly darker blue on hover */
+  transform: translateY(-2px); /* Subtle lift effect */
+  text-decoration: underline; /* Add underline for emphasis */
+}
+
+.roomReq {
+  display: flex; /* Ensure the container is a flexbox */
+  align-items:center; /* Vertically align items */
+  gap: 1rem; /* Adjust spacing between fields and button */
+  width: 100%; /* Full width of parent container */
+  box-sizing: border-box;
+}
+
+button[type="buttonRemove"] {
+  margin: 0; /* Reset margin */
+  background-color: #f00f0f; /* Keep existing color */
+  height: 40px; /* Adjust the height to match input fields */
+  width: auto; /* Allow button to size according to content */
+  flex-shrink: 0; /* Prevent button from shrinking */
+}
+
+button[type="button"] {
+  background-color: #007bff;
+  width: 50%;
+}
+
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+button[type="button"]:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+
+
+button:first-of-type:hover {
+  background-color: #5a6268;
+  transform: translateY(-2px);
 }
 
 button[type="submit"]:disabled {
   background-color: #a19898;
+  cursor: not-allowed;
 }
+
 
 .error {
   color: red;
@@ -71,11 +160,13 @@ button[type="submit"]:disabled {
 
 h3 {
   margin-top: 20px;
+  text-align: center;
 }
 
 h4 {
   margin-top: 10px;
   color: #28a745;
+  
 }
 .search-results {
   max-width: 800px;
@@ -96,3 +187,6 @@ mat-expansion-panel {
 mat-divider {
   margin: 10px 0;
 }
+
+
+

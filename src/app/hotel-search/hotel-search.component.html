@@ -1,3 +1,4 @@
+
 <div class="home-container">
   
   <div class="container">
@@ -30,11 +31,13 @@
           {{ noOfNightsError }}
         </div>
       </div>
-
+      
       <div formArrayName="roomRequests">
         <h3>Room Requests</h3>
-        <div *ngFor="let roomRequest of roomRequests; let i = index">
-          <div>
+        <div class="roomReqList" *ngFor="let roomRequest of roomRequests; let i = index">
+          
+          <div class="roomReq">
+            <div class="numOfRooms">
             <label>Number of Rooms</label>
             <input
               type="number"
@@ -48,6 +51,8 @@
             <div class="error-message" *ngIf="roomRequest.noOfRooms < 1" style="color: red;">
               Number of rooms cannot be less than 1.
             </div>
+          </div>
+          <div class="numOfRooms">
             <label>Number of Adults</label>
             <input
               type="number"
@@ -59,13 +64,16 @@
             <div class="error-message" *ngIf="roomRequest.noOfAdults < 1" style="color: red;">
               Number of Adults cannot be less than 1.
             </div>
-            <button type="button" (click)="removeRoomRequest(i)">Remove</button>
+          </div>
+          </div>
+            <button type="buttonRemove" (click)="removeRoomRequest(i)">Remove</button>
           </div>
         </div>
         <button type="button" (click)="addRoomRequest()">
           Add Room Request
         </button>
-      </div>
+      
+    
 
       <button
         type="submit"
@@ -75,6 +83,7 @@
       </button>
     </form>
 
+
     <div  *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
 
     <div class="search-results" *ngIf="searchResults.length > 0">
@@ -82,9 +91,11 @@
         <mat-expansion-panel *ngFor="let hotel of searchResults">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              <h3>
+              <div class="search-results">
+              <h4>
                 {{ hotel.hotelName }}
-              </h3>
+              </h4>
+            </div>
             </mat-panel-title>
           </mat-expansion-panel-header>
 

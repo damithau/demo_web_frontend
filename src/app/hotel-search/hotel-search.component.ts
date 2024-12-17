@@ -118,7 +118,7 @@ export class HotelSearchComponent {
         this.errorMessage = '';
       },
       (error) => {
-        this.errorMessage = 'Error fetching data, please try again later';
+        this.errorMessage = 'Error fetching data';
         this.searchResults = [];
       }
     );
